@@ -1,5 +1,8 @@
+import { SearchModule } from './search/search.module';
+import { TopBarModule } from './topbar/topbar.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -10,7 +13,10 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    TopBarModule,
+    SearchModule
   ],
   providers: [],
   bootstrap: [AppComponent]
