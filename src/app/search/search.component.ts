@@ -1,34 +1,32 @@
-import {SearchService} from './search.service';
-import {Component, OnInit, Injectable} from '@angular/core';
+import { SearchService } from "./search.service";
+import { Component, OnInit, Injectable, Output } from "@angular/core";
 
 @Injectable()
-@Component({selector: 'app-search', templateUrl: './search.component.html', styleUrls: ['./search.css']})
+@Component({
+	selector: "app-search",
+	templateUrl: "./search.component.html",
+	styleUrls: ["./search.css"]
+})
 export class SearchComponent implements OnInit {
+	search: String = "";
+	error = {};
 
-  search : String = '';
-  error = {};
-  data = {};
+	@Output() data = {};
 
-  submitted = false;
+	submitted = false;
 
-  constructor(private searchService : SearchService) {}
+	constructor(private searchService: SearchService) {}
 
-  ngOnInit() {}
+	ngOnInit() {}
 
-  onSubmit() {
-    this.submitted = true;
-    this
-      .searchService
-      .searchMovies(this.search)
-      .subscribe(data => this.data = {
-        ...data
-      }, // success path
-          error => this.error = error // error path
-      );
-  }
-
-  // TODO: Remove this when we're done
-  get diagnostic() {
-    return JSON.stringify(this.search);
-  }
+	onSubmit() {
+		this.submitted = true;
+		this.searchService.searchMovies(this.search).subscribe(
+			data =>
+				(this.data = {
+					...data
+				}), // success path
+			error => (this.error = error) // error path
+		);
+	}
 }
